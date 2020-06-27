@@ -1,0 +1,30 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+  <h1>Reset Password</h1><br>
+  {% if error %}
+    <p class=error><strong>Error:</strong> {{ error }}
+  {% endif %}
+  <form method=post>
+
+    <div class="form-group">
+      <label for="resetUsername">Username</label>
+      <input type="search" class="form-control" id="resetUsername" name="username" placeholder="Enter username">
+            <small class="form-text text-muted">Case sensitive when logging in</small>
+    </div>
+    <div class="form-group">
+      <label for="newPswrd">New Password</label>
+      <input type="password" class="form-control" id="newPswrd" name="newPswrd" placeholder="New Password" minlength="6" maxlength="16">
+      <small class="form-text text-muted">
+        Must be between 6 and 16 characters, contain at least one number and contain at least one symbol (@#$%).
+      </small>
+    </div>
+    <div class="form-group">
+      <label for="confirmPswrd">Confirm Password</label>
+      <input type="password" class="form-control" id="confirmPswrd" name="confirmPswrd" placeholder="Confirm Password">
+    </div>
+
+    <button type="submit" class="btn btn-primary">Reset</button>
+
+  </form>
+{% endblock %}

@@ -1,0 +1,133 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<h1>Your Current Session</h1>
+<table class="table">
+    <thead>
+        <tr>
+            <th scope="col">Semester</th>
+            <th scope="col">Class</th>
+            <th scope="col">Topic</th>
+            <th scope="col">Duration (Minutes)</th>
+            <th scope="col">Session</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr>
+            <td>{{ semester }}</td>
+            <td>{{ course }}</td>
+            <td>{{ topic }}</td>
+            <td>{{ duration }}</td>
+            <td>{{ today }}</td>
+        </tr>
+    </tbody>
+</table>
+<div class="container">
+  <h1>Counting Down...</h1>
+    <div class="twelve columns text-center">
+        <div id="default_container">
+            <h1 id="countdown" style="font-size:100px;"></h1>
+            <script>
+                window.onload = () => {
+                    alert('Counting Down!');
+                    const dis_submit = document.getElementById("last");
+                    dis_submit.disabled = true;
+
+                    const my_var = {{ duration }};
+                    let intervalID = null;
+
+                    const StartingMin = my_var;
+                    let time = StartingMin * 60;
+
+                    const countdownEl = document.getElementById('countdown');
+
+                    intervalID = setInterval(updateCountdown, 1000);
+
+                    var audio = new Audio('https://www.mboxdrive.com/Final%20Fantasy%20VII%20OST%20-%20Let%20the%20Battles%20Begin%20(Bat(MP3_160K).mp3');
+
+                    function updateCountdown() {
+                        const minutes = Math.floor(time / 60);
+                        let seconds = time % 60;
+
+                        seconds = seconds < 10 ? '0' + seconds : seconds;
+                        countdownEl.innerHTML = `${minutes}:${seconds}`;
+                        time--;
+
+                        if (time < 0) {
+                            time = 0;
+                            clearInterval(intervalID);
+                            audio.play();
+                            alert('Times up!');
+                            const butt = document.getElementById('start');
+                            butt.disabled = true;
+                            dis_submit.disabled = false;
+
+                            var div = document.createElement("div");
+                            var p = document.createElement('p')
+                            p.textContent = "Congrats on completing the active recall session! Submit the form above by ranking your " +
+                                "active recall abilities from a scale of 1 to 10.";
+                            document.body.appendChild(p);
+
+                            // var form = document.createElement('form');
+                            // form.action = '/timer';
+                            // form.method = 'post';
+                            //
+                            // var form_el = document.createElement('input');
+                            // form_el.class = 'form-control';
+                            // form_el.name = 'confidence';
+                            // form_el.placeholder = 'Confidence (1-10)';
+                            // form_el.type = 'number';
+                            // form.appendChild(form_el);
+                            // document.body.appendChild(form);
+                            //
+                            // var button = document.createElement("button");
+                            // button.class = "btn btn-primary";
+                            // button.type = "submit";
+                            // var t = document.createTextNode("Submit");
+                            // button.appendChild(t);
+                            // document.body.appendChild(button);
+
+
+
+
+
+                            // var text = '<p> Congrats! You completed the active recall session.</p>' +
+                            //          '<form action="/study" method="post">' +
+                            //         '<input class="form-control" name="confidence" placeholder="Confidence (1-10)" type="number" min="1" max="10">' +
+                            //         '<small class="form-text text-muted">e.g \'5\'</small>' +
+                            //         '</form>';
+                            // document.write(text);
+
+                            return;
+                        }
+                    }
+                    document.getElementById('start').addEventListener('click', function () {
+                        intervalID = setInterval(updateCountdown, 1000);
+                    });
+
+                    document.getElementById('stop').addEventListener('click', function () {
+                        if (intervalID)
+                            clearInterval(intervalID);
+                    });
+                }
+
+            </script>
+            <div>
+                <button id="start" style="display:inline" type="button" class="btn btn-success">Start</button>
+                <button id="stop" style="display:inline" type="button" class="btn btn-danger">Stop</button>
+            </div>
+            <br><br>
+            <div>
+                <form action="/timer" method="post">
+                    <div class="form-group">
+                        <input class="form-control" name="confidence" placeholder="Confidence (1-10)" type="number" min="1" max="10">
+                        <small class="form-text text-muted">e.g '5'</small> <br>
+                        <button id="last" class="btn btn-primary" type="submit">Submit</button>
+                    </div>
+                </form>
+
+            </div>
+        </div>
+    </div>
+</div>
+{% endblock %}

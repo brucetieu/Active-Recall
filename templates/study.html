@@ -1,0 +1,46 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+    {% if error %}
+        <p class=error><strong>Error:</strong> {{ error }}
+    {% endif %}
+<div class="card">
+    <div class="cardcontent">
+        <h3>Active Recall Study Card</h3> <hr>
+        <div class="cardtext">
+                <p>
+    <strong> Directions: </strong> Enter all fields below, then click on the "Ready, Set, Active Recall!" button.
+        A timer will countdown, and the active recalling begins. When the session is over, you will be asked to
+        rate your recalling abilities on a scale of 1 to 10, with 1 being the weakest and 10 the strongest.
+    </p>
+    <form action="/study" method="post">
+
+        <div class="form-group">
+            <input class="form-control" name="semester" placeholder="Enter current semester" type="number" min="1" required>
+            <small class="form-text text-muted">e.g '1'</small>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="class" placeholder="Enter a class" type="text" maxlength="255" required>
+            <small class="form-text text-muted">e.g 'MATH 5837'</small>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="topic" placeholder="Enter a topic" type="text" maxlength="255" required>
+            <small class="form-text text-muted">e.g 'ANOVA approach'</small>
+        </div>
+
+        <div class="form-group">
+            <input class="form-control" name="time" placeholder="Study length (minutes)" type="number" min="0" maxLength="45" required>
+            <small class="form-text text-muted">e.g 25 </small>
+        </div>
+
+        <button class="btn btn-primary" type="submit">Ready, Set, Active Recall!</button>
+    </form>
+    </div>
+        </div>
+</div>
+{% endblock %}
+<script>
+
+</script>

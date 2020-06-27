@@ -1,0 +1,21 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+<h1 style="color: seagreen;"> Results of all your study sessions</h1><br>
+<div>
+    <!-- Send form data as POST transaction -->
+    <form method="post">
+        <label for="semester"> Pick a semester: </label>
+        <!-- Create dropdown which loops through unique semesters -->
+        <select id="semester" name="semester">
+            {% for sem in df['Semester'].unique() %}
+            <option value="{{ sem }}"> {{ sem }} </option>
+            {% endfor %}
+        </select>
+        <input class="basic-submit" type="submit" value="Go">
+    </form>
+</div>
+
+
+<img src="{{ image }}" alt="">
+{% endblock %}

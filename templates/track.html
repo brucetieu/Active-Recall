@@ -1,0 +1,108 @@
+{% extends 'layout.html' %}
+
+
+{% block main %}
+<script src='https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.9.3/Chart.min.js'></script>
+<!--<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.5.1/jquery.min.js"></script>-->
+
+<div style="font-size: 20px; color: darkmagenta;">
+    {{ user }}, here is your progression of
+        {% for t in topic_uni %}
+             {{ t }}
+          {% endfor %}
+    for the class
+    {% for c in course_uni%}
+    {{ c }}.
+    {% endfor %}
+</div>
+
+<div><canvas id="myChart"></canvas></div>
+
+<script>
+
+    var chartColors = {
+    color1: 'rgb(255, 0, 0)',
+    color2: 'rgb(0, 128, 0)',
+    color3: 'rgb(255, 255, 0)'
+};
+
+    var myData = {{ y }}
+
+var ctx = document.getElementById("myChart").getContext("2d");
+
+var myChart = new Chart(ctx, {
+  type: 'bar',
+  data: {
+    labels: [
+        {% for data_x in x %}
+        "{{ data_x }}",
+        {% endfor %}
+    ],
+    datasets: [{
+      label:
+          {% for t in topic_uni %}
+             "{{ t }}",
+          {% endfor %}
+        backgroundColor: [
+            chartColors.color1,
+            chartColors.color1,
+            chartColors.color1,
+            chartColors.color1
+      ],
+      data: myData
+    }],
+  },
+    options: {
+        title:{
+            display:true,
+                text: {% for c in course_uni%}
+                       "{{ c }}",
+                        {% endfor %}
+        },
+        scales: {
+            yAxes: [{
+                ticks:{
+                    beginAtZero: true,
+                    stepSize: 1,
+                    steps: 10,
+                    max:10
+                },
+                scaleLabel: {
+                    display: true,
+                    labelString: 'Confidence'
+                }
+            }],
+                xAxes: [{
+                scaleLabel: {
+                    display:true,
+                    labelString: 'Session'
+
+        },
+
+
+    }]
+}
+    }
+});
+
+// Color code the confidence levels, then update the chart
+var dataset = myChart.data.datasets[0];
+for (var i = 0; i < dataset.data.length; i++) {
+  if (dataset.data[i] <= 4) {
+    dataset.backgroundColor[i] = chartColors.color1;
+  }
+  else if ((dataset.data[i] >= 5) && (dataset.data[i] <= 7)){
+    dataset.backgroundColor[i] = chartColors.color3;
+  }
+  else{
+   dataset.backgroundColor[i] = chartColors.color2;
+  }
+}
+myChart.update();
+
+</script>
+<p>
+   <a href="{{url_for('plot')}}">See all your results for all classes and all topics</a>
+</p>
+
+{% endblock %}

@@ -1,0 +1,53 @@
+{% extends 'layout.html'%}
+
+{% block main %}
+        <div class="container">
+            <div class="row">
+                <div class="col">
+                    <h1 style="margin-top: 25px; text-align: center; color: dodgerblue; font-weight: bold;">
+                        Welcome to Active Recall!
+                    </h1>
+                    <hr>
+                    <main class="font">
+                        <em>"Active recall is the process of remembering information. It is an efficient way of moving information from short-term to long-term memory
+                        so that you can easily draw on it again when you need it most, such as for an assessment or exam.
+                        So the theory goes that if you want to remember a fact, don’t just read it, don’t reread it, don’t just underline or highlight it,
+                        close your eyes and try to recall it without looking it up in your notes or online. If you can successfully do so, you have used active recall.
+                            If not, look it up, learn it and then try again." </em>
+                             <footer class="small text-center text-muted">
+                                 <br>
+            Information provided by this <a href="https://getatomi.com/staffroom/what-is-active-recall-and-how-effective-is-it/">atomi article</a>.
+        </footer>
+                    </main>
+                    <br>
+                    <div class="card2">
+                        <div class = "bulb">&#128161;</div>
+                        This web application will help you to active recall and keep track of your recalling abilities over time. This is how it works:
+                        <hr>
+                        <ol class="li-align">
+                            <li>Enter a course you would like to study for</li>
+                            <li>Enter the topic you want to study</li>
+                            <li>Enter a study duration; the minimum is 25 minutes</li>
+                    {% if session['logged_in'] == True %}
+                            <li>Put away your notes, and start <a href="{{url_for('study')}}">actively recalling!</a></li>
+                    {% else %}
+                    <li>Put away your notes, and start actively recalling!</li>
+                    {% endif %}
+                            <li> Rank your recalling abilities on a scale of 1 to 10</li>
+                        </ol>
+                        <hr>
+                        <p>
+                      {% if session['logged_in'] == True %}
+                        {% else %}
+                        <a href="/register">Register</a> to track your progress!
+                        <a href="/login">Login</a> if you already have an account.
+
+                        {% endif %}
+                    </p>
+                    </div>
+                    <br>
+                </div>
+            </div>
+        </div>
+<!--<img src="/static/brainwerk.jpg" width="700" height="400" class="center" alt="Brain">-->
+{% endblock %}

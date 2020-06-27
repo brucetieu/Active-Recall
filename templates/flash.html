@@ -1,0 +1,14 @@
+{% extends 'layout.html' %}
+
+{% block main %}
+
+<div class="alert alert-warning" role="alert">
+    {% if message %}
+    {{ message }}
+    {% endif %}
+</div>
+<figure>
+    <img src="/static/kaito.gif" alt="study">
+</figure>
+
+{% endblock %}

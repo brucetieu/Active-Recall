@@ -1,0 +1,7 @@
+.DS_Store
+.idea/
+__pycache__/
+bin/
+image_output.png
+lib/
+pyvenv.cfg
