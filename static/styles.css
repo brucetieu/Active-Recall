@@ -61,6 +61,7 @@ button {
 
 .card {
     width: 500px;
+    max-width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: auto;
@@ -75,6 +76,7 @@ button {
 
 .card2 {
     width: 500px;
+    max-width: 100%;
     border: 1px solid #ccc;
     border-radius: 5px;
     margin: auto;
