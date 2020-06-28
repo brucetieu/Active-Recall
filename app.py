@@ -400,7 +400,7 @@ def plot():
             plt.ylabel("Duration (minutes)")
 
             # Save the figure to the following path as a png and make it fit on the page
-            plt.savefig('/Users/bruce/RecallAttmp2/static/image_output.png', format='png', bbox_inches='tight')
+            plt.savefig('static/image_output.png', format='png', bbox_inches='tight')
 
             # Grab the full directory of the photo
             full_filename = os.path.join(app.config['UPLOAD_FOLDER'], 'image_output.png')

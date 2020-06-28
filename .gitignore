@@ -5,3 +5,6 @@ bin/
 image_output.png
 lib/
 pyvenv.cfg
+.vscode/
+flask_session/
+venv/
