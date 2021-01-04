@@ -277,7 +277,7 @@ def timer():
     # Grab those session variables we assigned earlier
     course = session['class']
     topic = session['topic']
-    duration = session['duration']
+    duration = session['duration'] 
     user = session['username']
     semester = session['semester']
 
@@ -329,10 +329,9 @@ def track():
         course_uni = np.array(course)
         topic_uni = np.array(topic)
 
-        print(x)
-        print(y)
-        print(course)
-        print(topic)
+        # The user cannot see their results unless they fully complete a study session first.
+        if not x or not y or not course_uni or not topic_uni:
+            return render_template("flash.html", message="Looks like your session got interrupted. Please fully complete a study session.")
 
         return render_template('track.html', x=x, y=y, course_uni=np.unique(course_uni),
                                topic_uni=np.unique(topic_uni), user=user)
