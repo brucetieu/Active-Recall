@@ -41,135 +41,74 @@
 
                     let currentDuration = {{ duration }};
 
-                console.log(parseInt(currentDuration))
-                if (parseInt(currentDuration) < 10) {
-                    currentDuration = "0" + currentDuration;
-                }
-
-                const stringDuration = currentDuration + ":00";
-
-                submitBtn.disabled = true;
-
-                time.innerHTML = stringDuration;
-
-                clearInterval(countdown);
-                countdown = setInterval(decrementTime, 1000);
-
-                start.disabled = true;
-
-                function decrementTime() {
-                    let currentMinutes = parseInt(time.textContent.substr(0, 3));
-                    let extraSeconds = parseInt(time.textContent.slice(time.textContent.length - 2));
-                    let timeInSeconds = currentMinutes * 60 + extraSeconds;
-
-                    timeInSeconds -= 1;
-
-                    let minutes = Math.floor(timeInSeconds / 60);
-                    let seconds = timeInSeconds % 60;
-
-                    // Formatting the zeros when the timer hits a 10 either in seconds or minutes
-                    seconds < 10
-                        ? (time.textContent = `${minutes}:0${seconds}`)
-                        : (time.textContent = `${minutes}:${seconds}`);
-
-                    if (minutes < 10) {
-                        time.textContent = `0${minutes}:${seconds}`;
+                    if (parseInt(currentDuration) < 10) {
+                        currentDuration = "0" + currentDuration;
                     }
 
-                    if ((minutes < 10) & (seconds < 10)) {
-                        time.textContent = `0${minutes}:0${seconds}`;
-                    }
+                    const stringDuration = currentDuration + ":00";
 
-                    // When time's up, play a sound
-                    if (timeInSeconds == 0) {
-                        stopTime();
-                        start.disabled = true;
-                        stop.disabled = true;
-                        submitBtn.disabled = false;
-                        alert("Time's Up!");
-                        return;
-                    }
+                    submitBtn.disabled = true;
 
-                }
+                    time.innerHTML = stringDuration;
 
-                // function which stops the timer;
-                function stopTime() {
-                    // Clear the timer
                     clearInterval(countdown);
-                }
-
-                stop.addEventListener("click", ()=> {
-                    if (start.disabled = true) start.disabled = false;
-                    stopTime();
-                    stop.disabled = true;
-                })
-
-                start.addEventListener("click", ()=> {
-                    if (stop.disabled = true) stop.disabled = false;
                     countdown = setInterval(decrementTime, 1000);
+
                     start.disabled = true;
-                })
-        
 
+                    function decrementTime() {
+                        let currentMinutes = parseInt(time.textContent.substr(0, 3));
+                        let extraSeconds = parseInt(time.textContent.slice(time.textContent.length - 2));
+                        let timeInSeconds = currentMinutes * 60 + extraSeconds;
 
-                
+                        timeInSeconds -= 1;
 
+                        let minutes = Math.floor(timeInSeconds / 60);
+                        let seconds = timeInSeconds % 60;
+
+                        // Formatting the zeros when the timer hits a 10 either in seconds or minutes
+                        seconds < 10
+                            ? (time.textContent = `${minutes}:0${seconds}`)
+                            : (time.textContent = `${minutes}:${seconds}`);
+
+                        if (minutes < 10) {
+                            time.textContent = `0${minutes}:${seconds}`;
+                        }
+
+                        if ((minutes < 10) & (seconds < 10)) {
+                            time.textContent = `0${minutes}:0${seconds}`;
+                        }
+
+                        // When time's up, play a sound
+                        if (timeInSeconds == 0) {
+                            stopTime();
+                            start.disabled = true;
+                            stop.disabled = true;
+                            submitBtn.disabled = false;
+                            alert("Time's Up!");
+                            return;
+                        }
+
+                    }
+
+                    // function which stops the timer;
+                    function stopTime() {
+                        // Clear the timer
+                        clearInterval(countdown);
+                    }
+
+                    stop.addEventListener("click", ()=> {
+                        if (start.disabled = true) start.disabled = false;
+                        stopTime();
+                        stop.disabled = true;
+                    })
+
+                    start.addEventListener("click", ()=> {
+                        if (stop.disabled = true) stop.disabled = false;
+                        countdown = setInterval(decrementTime, 1000);
+                        start.disabled = true;
+                    })
                 }
-
-
-
-                // window.onload = () => {
-                //     alert('Counting Down!');
-                //     const dis_submit = document.getElementById("last");
-                //     dis_submit.disabled = true;
-
-                //     const my_var = {{ duration }};
-                //     let intervalID = null;
-
-                //     const StartingMin = my_var;
-                //     let time = StartingMin * 60;
-
-                //     const countdownEl = document.getElementById('countdown');
-
-                //     intervalID = setInterval(updateCountdown, 1000);
-
-                //     var audio = new Audio('https://www.mboxdrive.com/Final%20Fantasy%20VII%20OST%20-%20Let%20the%20Battles%20Begin%20(Bat(MP3_160K).mp3');
-
-                //     function updateCountdown() {
-                //         const minutes = Math.floor(time / 60);
-                //         let seconds = time % 60;
-
-                //         seconds = seconds < 10 ? '0' + seconds : seconds;
-                //         countdownEl.innerHTML = `${minutes}:${seconds}`;
-                //         time--;
-
-                //         if (time < 0) {
-                //             time = 0;
-                //             clearInterval(intervalID);
-                //             audio.play();
-                //             alert('Times up!');
-                //             const butt = document.getElementById('start');
-                //             butt.disabled = true;
-                //             dis_submit.disabled = false;
-
-                //             var div = document.createElement("div");
-                //             var p = document.createElement('p')
-                //             p.textContent = "Congrats on completing the active recall session! Submit the form above by ranking your " +
-                //                 "active recall abilities from a scale of 1 to 10.";
-                //             document.body.appendChild(p);
-
-                //             return;
-                //         }
-                //     }
-                //     document.getElementById('start').addEventListener('click', function () {
-                //         intervalID = setInterval(updateCountdown, 1000);
-                //     });
-
-                //     document.getElementById('stop').addEventListener('click', function () {
-                //         if (intervalID)
-                //             clearInterval(intervalID);
-                //     });
-                // }
 
             </script>
             <div>
