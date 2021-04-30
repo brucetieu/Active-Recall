@@ -91,7 +91,7 @@ testpath==0.4.4
 tornado==6.0.4
 tqdm==4.42.1
 traitlets==4.3.3
-urllib3==1.25.5
+urllib3==1.25.8
 virtualenv==20.0.25
 wcwidth==0.1.9
 webencodings==0.5.1
