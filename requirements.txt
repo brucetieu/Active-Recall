@@ -21,7 +21,7 @@ dnspython==2.6.1
 email-validator==1.1.1
 entrypoints==0.3
 filelock==3.0.12
-Flask==1.1.1
+Flask==2.2.5
 Flask-Compress==1.5.0
 Flask-MySQL==1.5.1
 Flask-MySQLdb==0.2.0
