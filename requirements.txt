@@ -20,7 +20,7 @@ distlib==0.3.1
 dnspython==2.6.1
 email-validator==1.1.1
 entrypoints==0.3
-filelock==3.0.12
+filelock==3.20.3
 Flask==2.2.5
 Flask-Compress==1.5.0
 Flask-MySQL==1.5.1
